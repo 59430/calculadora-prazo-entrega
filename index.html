@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Prazo de Entrega</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Prazo de Entrega</h1>
+        <label for="data-inicial">Data Inicial:</label>
+        <input type="date" id="data-inicial">
+
+        <div id="processos">
+            <h3>Processos:</h3>
+            <div class="processo">
+                <label for="grupo-valvula">Grupo Válvula:</label>
+                <select id="grupo-valvula" onchange="atualizarPrazoIdeal()">
+                    <option value="" data-prazo="0">Selecione o grupo de válvulas...</option>
+                    <option value="3" data-prazo="3">Grupo 200/208/236</option>
+                    <option value="90" data-prazo="90">Grupo 246</option>
+                    <option value="60" data-prazo="60">Grupo 260</option>
+                    <option value="3" data-prazo="3">Grupo Reparo Borboleta</option>
+                    <option value="45" data-prazo="45">Grupo 905/915/914/940/945/950/1100 até 4pol 300lbs WCB</option>
+                    <option value="60" data-prazo="60">Grupo 905/915/914 acima 4pol 300lbs WCB</option>
+                    <option value="90" data-prazo="90">Grupo 905/915/914 acima 4pol 300lbs demais</option>
+                    <option value="60" data-prazo="60">Grupo 930</option>
+                    <option value="90" data-prazo="90">Grupo 920/980</option>
+                    <option value="45" data-prazo="45">Grupo 700</option>
+                    <option value="45" data-prazo="45">Grupo 705 até 300 lbs</option>
+                    <option value="90" data-prazo="90">Grupo 705 acima 300 lbs</option>
+                    <option value="45" data-prazo="45">Grupo 710/715</option>
+                    <option value="60" data-prazo="60">Grupo 960 wcb/cf8</option>
+                    <option value="90" data-prazo="90">Grupo 960 outros</option>
+                    <option value="120" data-prazo="120">Grupo 1620</option>
+                    <option value="5" data-prazo="5">Grupo Reparo Globo</option>
+                    <option value="45" data-prazo="45">Grupo 850</option>
+                    <option value="10" data-prazo="10">Grupo 350</option>
+                    <option value="30" data-prazo="30">Grupo 351</option>
+                    <option value="45" data-prazo="45">Grupo 352</option>
+                    <option value="45" data-prazo="45">Grupo 445/446</option>
+                    <option value="90" data-prazo="90">Grupo 160/161</option>
+                </select>
+                <input type="text" id="prazo-ideal" readonly>
+                
+            </div>
+            <div class="processo">
+                <label for="engenharia">Engenharia:</label>
+                <input type="number" id="engenharia" min="0">
+            </div>
+            <div class="processo">
+                <label for="pcp-pre-compra">PCP - Pré Compra:</label>
+                <input type="number" id="pcp-pre-compra" min="0">
+            </div>
+            <div class="processo">
+                <label for="compras-prazo">Compras/Prazo Fornecedor/Logística:</label>
+                <select id="compras-prazo">
+                    <option value="0">Selecione o tipo de fornecedor...</option>
+                    <option value="19">Inox</option>
+                    <option value="19">A1020/1045</option>
+                    <option value="52">S208, Suporte S236</option>
+                    <option value="27">Bicos Dessuper</option>
+                    <option value="22">Instrumentos</option>
+                    <option value="37">Molas</option>
+                    <option value="37">Teflon</option>
+                    <option value="32">Fixadores</option>
+                    <option value="17">Endurecimento</option>
+                    <option value="72">S208 (Fundições Aurora)</option>
+                    <option value="72">S236/S960/S200 (Fundições Aurora)</option>
+                    <option value="57">S905, S915 e 246 (Fundições Relâmpago)</option>
+                    <option value="19">Cromo Duro</option>
+                    <option value="52">S445, S915, S960, S236 (Ipaussu)</option>
+                    <option value="27">Grafoil, Espiroflex e Premoldado (Juntas LGT)</option>
+                    <option value="17">Anel O-Rings (Leme e Leme)</option>
+                    <option value="32">Vedações (Madri)</option>
+                    <option value="32">Vedações (Magi)</option>
+                    <option value="16">Galvanização (Metalgon)</option>
+                    <option value="72">S236, S246 (Metalvic)</option>
+                    <option value="57">S905, S915 (Metalvic)</option>
+                    <option value="27">Instrumentos (Microkits)</option>
+                    <option value="32">Molas (Molas Casa Verde)</option>
+                    <option value="27">Instrumentos (Movimatic)</option>
+                    <option value="32">Vedação com Alma de Aço (Placebor)</option>
+                    <option value="27">Vedações (Placebor)</option>
+                    <option value="27">Junta Tipo U S260 (Placebor)</option>
+                    <option value="32">Junta Tipo U S260 (Plastermo)</option>
+                    <option value="22">Raio-X (Radiolab)</option>
+                    <option value="19">Chapas (Regenfer)</option>
+                    <option value="22">Vedações Retesp (Retesp)</option>
+                    <option value="32">Vedações (Sertved)</option>
+                    <option value="42">Bicos Dessuper (Spray Sistem)</option>
+                    <option value="52">Periféricos S236 e S905 (Starken)</option>
+                    <option value="19">Nitretação (Supertrat)</option>
+                    <option value="42">Capa S235/236 (Tecnoflon)</option>
+                    <option value="32">Caixa Redutora (UP Redutores)</option>
+                    <option value="19">Anel O-Rings (Usina Vedação/Plisved)</option>
+                    <option value="22">Usinagem em Geral (Usinagem em Geral)</option>
+                    <option value="17">Anel O-Rings (Veda-Ata)</option>
+                    <option value="52">S200, Atuadores S905 (Zagaza)</option>
+                    <option value="27">Corpo S350 Bronze (AC Metal)</option>
+                    <option value="32">Modelos (Moldearte)</option>
+                    <option value="19">Tubos (Diversos)</option>
+                    <option value="19">EPI (Diversos)</option>
+                    <option value="27">Ferramentas (Diversos)</option>
+                    <option value="27">Embalagens (Diversos)</option>
+                    <option value="27">Flange (Diversos)</option>
+                    <option value="22">Tintas (Diversos)</option>
+                    <option value="19">Rolamentos (Diversos)</option>
+                </select>
+            </div>
+            <div class="processo">
+                <label for="processamento-interno">Processamento Interno:</label>
+                <input type="number" id="processamento-interno" min="0">
+            </div>
+            <div class="processo">
+                <label for="montagem-expedicao">Montagem/Expedição:</label>
+                <input type="number" id="montagem-expedicao" min="0">
+            </div>
+        </div>
+
+        <button onclick="calcularPrazo()">Calcular</button>
+        <button onclick="limparDados()">Limpar</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
