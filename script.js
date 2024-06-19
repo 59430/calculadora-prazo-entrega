@@ -20,12 +20,12 @@ function calcularPrazo() {
     const montagemExpedicao = parseFloat(document.getElementById('montagem-expedicao').value) || 0;
 
     // Calcular o prazo total em dias
-    let prazoTotalDias = grupoValvula +
-                         engenharia +
+    let prazoTotalDias = engenharia +
                          pcpPreCompra +
                          comprasPrazo +
                          processamentoInterno +
-                         montagemExpedicao;
+                         montagemExpedicao
+                         ;
 
     // Calcular a diferença entre o prazo ideal e o prazo total de processamento
     let diferencaPrazo = prazoIdeal - prazoTotalDias;
